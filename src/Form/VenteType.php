@@ -22,7 +22,7 @@ class VenteType extends AbstractType
             ->add('user', EntityType::class, ['class' => User::class, 'choice_label' => 'name'])
             ->add('produit', EntityType::class, ['class' => Produit::class, 'choice_label' => 'titre'])
             ->add('quantity', IntegerType::class, array("mapped" => false))
-            ->add('save', SubmitType::class, ['label' => 'Create Task'])
+            ->add('save', SubmitType::class, ['label' => 'Enregistrer la vente'])
             ->getForm();
     }
 
