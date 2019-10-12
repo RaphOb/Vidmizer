@@ -6,8 +6,10 @@ use App\Entity\Produit;
 use App\Entity\User;
 use App\Entity\Vente;
 use App\Form\ProduitType;
+use App\Form\SearchPointType;
 use App\Form\UserType;
 use App\Form\VenteType;
+use App\Services\PointService;
 use App\Services\ProduitService;
 use App\Services\UserService;
 use App\Services\VenteService;
@@ -20,16 +22,20 @@ class VenteController extends AbstractController
     private $userService;
     private $produitService;
     private $venteService;
+    private $pointService;
 
-    public function __construct(UserService $userService, ProduitService $produitService, VenteService $venteService)
+    public function __construct(UserService $userService, ProduitService $produitService, VenteService $venteService, PointService $pointService)
     {
         $this->userService = $userService;
         $this->produitService = $produitService;
         $this->venteService = $venteService;
+        $this->pointService = $pointService;
     }
 
     /**
      * @Route("/vente", name="vente")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request)
     {
@@ -66,11 +72,30 @@ class VenteController extends AbstractController
             return $this->redirectToRoute('vente');
         }
 
+        //Formulaire pour chercher les nombres de points par utilisateur et par data
+        $search_form = $this->createForm(SearchPointType::class);
+        $search_form->handleRequest($request);
+        if ($search_form->isSubmitted() && $search_form->isValid()) {
+            $start = $search_form['dateStart']->getData();
+            $end = $search_form['dateEnd']->getData();
+            $user_id = $search_form['user']->getData();
+            $user = $this->userService->getUserById($user_id);
+            $data = $this->pointService->getNbPointByUser($user_id, $start, $end);
+            if(!$data) {
+                $data = 0;
+            }
+
+            return $this->render('vente/test.html.twig', [
+                'data' => $data,
+                'username' => $user->getName()
+            ]);
+        }
 
         return $this->render('vente/index.html.twig', [
             'user_form' => $user_form->createView(),
             'produit_form' => $produit_form->createView(),
-            'vente_form' => $vente_form->createView()
+            'vente_form' => $vente_form->createView(),
+            'search_form' => $search_form->createView()
         ]);
     }
 }

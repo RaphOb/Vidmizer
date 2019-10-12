@@ -16,9 +16,8 @@ class ProduitType extends AbstractType
             ->add('titre')
             ->add('prix')
             ->add('point')
-            ->add('save', SubmitType::class,['label' => ' Créer un produit'])
-            ->getForm()
-        ;
+            ->add('save', SubmitType::class, ['label' => ' Créer un produit'])
+            ->getForm();
     }
 
     public function configureOptions(OptionsResolver $resolver)

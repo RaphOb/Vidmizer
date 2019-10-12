@@ -14,4 +14,9 @@ class PointService
     {
         $this->pointRepo = $pointRepo;
     }
+
+    public function getNbPointByUser($user_id, $start, $end)
+    {
+        return $this->pointRepo->getPointBetweenDate($user_id, $start, $end);
+    }
 }

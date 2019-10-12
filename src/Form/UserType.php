@@ -14,9 +14,8 @@ class UserType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('save', SubmitType::class,['label' => ' Créer un user'])
-            ->getForm()
-        ;
+            ->add('save', SubmitType::class, ['label' => ' Créer un user'])
+            ->getForm();
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -24,4 +24,9 @@ class UserService
         $this->em->flush();
     }
 
+    public function getUserById($user_id)
+    {
+        return $this->userRepo->find($user_id);
+    }
+
 }
