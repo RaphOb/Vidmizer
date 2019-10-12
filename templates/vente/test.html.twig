@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les points gagnés!{% endblock %}
+
+{% block body %}
+    <div class="center">
+        <div><strong>{{ username }}</strong> a obtenu :</div>
+        <div>{{ data }} points</div>
+    </div>
+
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+        .center {
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+        }
+        }
+    </style>
+{% endblock %}

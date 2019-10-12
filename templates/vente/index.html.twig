@@ -12,8 +12,26 @@
     <div class="example-wrapper">
         <div class="form">
             <div>
-                <h2>Créer une vente</h2>
+                <h2>Créer un vendeur</h2>
                 {{ form(user_form) }}
+            </div>
+        </div>
+        <div class="form">
+            <div>
+                <h2>Ajouter un produit</h2>
+                {{ form(produit_form) }}
+            </div>
+        </div>
+        <div class="form">
+            <div>
+                <h2>Réaliser une vente</h2>
+                {{ form(vente_form) }}
+            </div>
+        </div>
+        <div class="form">
+            <div>
+                <h2>Rechercher les points d'un utilisateur entre deux dates</h2>
+                {{ form(search_form) }}
             </div>
         </div>
     </div>
@@ -29,6 +47,14 @@
         .example-wrapper code {
             background: #F5F5F5;
             padding: 2px 6px;
+        }
+
+        .form {
+            display: inline-grid;
+            background-color: #363D8D;
+            padding: 20px 15px;
+            border: 3px solid #666;
+            border-radius: 20px;
         }
     </style>
 {% endblock %}
