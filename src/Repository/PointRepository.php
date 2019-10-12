@@ -19,6 +19,8 @@ class PointRepository extends ServiceEntityRepository
         parent::__construct($registry, Point::class);
     }
 
+    
+
     // /**
     //  * @return Point[] Returns an array of Point objects
     //  */
